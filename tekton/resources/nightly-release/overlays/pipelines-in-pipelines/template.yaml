@@ -23,6 +23,10 @@
           value: $(tt.params.versionTag)
         - name: serviceAccountPath
           value: release.json
+        - name: subfolder
+          value: pipelines-in-pipelines
+        - name: releaseBucket
+          value: gs://tekton-releases-nightly/pipelines-in-pipelines
         workspaces:
           - name: workarea
             volumeClaimTemplate:
