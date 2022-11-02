@@ -142,6 +142,8 @@ For the plumbing repo, manifest are applied nightly through two cronjobs:
 - [tekton-cronjobs](https://github.com/tektoncd/plumbing/tree/main/tekton/cronjobs/dogfooding/manifests/plumbing-tekton-cronjobs)
 
 Manifests from other repos (pipeline, dashboard and triggers) are applied manually for now.
+Manifests from the experimental concurrency project are applied manually,
+and the project is enabled only for the "tekton-ci" namespace.
 
 ### Service Accounts
 
@@ -152,7 +154,7 @@ and related bindings, as they would require giving too broad access to the CD se
 ## Tekton Services
 
 Tekton services are deployed using the [`deploy-release.sh`](https://github.com/tektoncd/plumbing/blob/main/scripts/deploy-release.sh)
-script, which submits a kubernets `Job` to the `robocat` cluster, to trigger a deployment on the
+script, which submits a kubernetes `Job` to the `robocat` cluster, to trigger a deployment on the
 `dogfooding` cluster. The `Job` triggers and event listener on the `robocat` cluster, and triggers
 a Tekton task that downloads a release from the release bucket, optionally applies overlays and
 deploys the result to the `dogfooding` cluster using a dedicated service account.

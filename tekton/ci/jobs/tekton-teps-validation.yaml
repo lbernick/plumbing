@@ -104,3 +104,14 @@ spec:
       params:
         - name: teps-folder
           value: $(params.teps-folder)
+---
+apiVersion: tekton.dev/v1alpha1
+kind: ConcurrencyControl
+metadata:
+  name: teps-linter
+spec:
+  selector:
+    matchLabels:
+      tekton.dev/pipeline: teps-linter
+  groupBy:
+  - tekton.dev/pr-number
